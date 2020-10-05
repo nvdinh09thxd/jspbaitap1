@@ -15,11 +15,11 @@ table, tr, td, th {
 }
 </style>
 <body>
-	<div>
+	<div style="margin: 0 auto; width: 60%;">
 		<table>
 			<tr>
 				<th>bookId</th>
-				<th>title</th>
+				<th style="width: 20%">title</th>
 				<th>description</th>
 				<th>detail</th>
 				<th>enabled</th>

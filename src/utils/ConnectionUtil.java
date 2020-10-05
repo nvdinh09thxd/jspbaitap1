@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class ConnectionUtil {
 
 	
-	static String url = "jdbc:mysql://localhost:3306/bookstan?useUnicode=true&characterEncoding=UTF-8";
+	static String url = "jdbc:mysql://localhost:3306/books?useUnicode=true&characterEncoding=UTF-8";
 	static String username = "root";
 	static String password = "";
 

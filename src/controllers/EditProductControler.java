@@ -47,6 +47,9 @@ public class EditProductControler extends HttpServlet {
 		if (bookDAO.editBook(objBook) > 0) {
 			response.sendRedirect(request.getContextPath() + "/IndexController");
 			return;
+		} else {
+			request.getRequestDispatcher("/edit.jsp").forward(request, response);
+			return;
 		}
 	}
 
