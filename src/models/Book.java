@@ -12,6 +12,6 @@ public class Book {
 	private String title;
 	private String description;
 	private String detail;
-	private int enabled;
+	private boolean status;
 
 }

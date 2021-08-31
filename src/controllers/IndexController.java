@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import daos.BookDAO;
 import models.Book;
 
-@WebServlet("/IndexController")
+@WebServlet("/index")
 public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class IndexController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		BookDAO bookDAO = new BookDAO();
-		ArrayList<Book> listBooks = bookDAO.Book();
+		ArrayList<Book> listBooks = bookDAO.getListBooks();
 		request.setAttribute("listBooks", listBooks);
 		request.getRequestDispatcher("/list.jsp").forward(request, response);
 	}

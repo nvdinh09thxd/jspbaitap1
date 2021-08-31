@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import daos.BookDAO;
 import models.Book;
 
-@WebServlet("/EditProduct")
+@WebServlet("/edit")
 public class EditProductControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,17 +39,16 @@ public class EditProductControler extends HttpServlet {
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
 		String detail = request.getParameter("detail");
-		int enabled = Integer.parseInt(request.getParameter("enabled"));
+		boolean status = Boolean.parseBoolean(request.getParameter("status"));
 
-		Book objBook = new Book(bookId, title, description, detail, enabled);
+		Book objBook = new Book(bookId, title, description, detail, status);
 		BookDAO bookDAO = new BookDAO();
 
 		if (bookDAO.editBook(objBook) > 0) {
-			response.sendRedirect(request.getContextPath() + "/IndexController");
+			response.sendRedirect(request.getContextPath() + "/index");
 			return;
 		} else {
-			request.getRequestDispatcher("/edit.jsp").forward(request, response);
-			return;
+			response.sendRedirect(request.getContextPath() + "/edit?bookId=" + bookId+"&err=1");
 		}
 	}
 

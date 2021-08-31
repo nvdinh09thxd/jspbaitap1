@@ -22,7 +22,7 @@ table, tr, td, th {
 				<th style="width: 20%">title</th>
 				<th>description</th>
 				<th>detail</th>
-				<th>enabled</th>
+				<th>status</th>
 				<th>function</th>
 			</tr>
 			<%
@@ -32,14 +32,14 @@ table, tr, td, th {
 					 for(Book objBook: listBooks){
 			%>
 			<tr>
-				<td><%=objBook.getBookId() %></td>
+				<td style="text-align: center"><%=objBook.getBookId() %></td>
 				<td><%=objBook.getTitle() %></td>
 				<td><%=objBook.getDescription() %></td>
 				<td><%=objBook.getDetail() %></td>
-				<td><%=objBook.getEnabled() %></td>
+				<td style="text-align: center"><%=objBook.isStatus()? 1 : 0 %></td>
 				<td>
-					<a href="<%=request.getContextPath()%>/EditProduct?bookId=<%=objBook.getBookId()%>">Sửa</a>
-				 	<a href="<%=request.getContextPath()%>/Delete?bookId=<%=objBook.getBookId()%>"
+					<a href="<%=request.getContextPath()%>/edit?bookId=<%=objBook.getBookId()%>">Sửa</a>
+				 	<a href="<%=request.getContextPath()%>/del?bookId=<%=objBook.getBookId()%>"
 					onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">Xóa</a>
 				</td>
 			</tr>

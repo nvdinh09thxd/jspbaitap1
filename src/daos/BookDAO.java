@@ -16,21 +16,20 @@ public class BookDAO {
 	private PreparedStatement pst;
 	private ResultSet rs;
 
-	public ArrayList<Book> Book() {
+	public ArrayList<Book> getListBooks() {
 		ArrayList<Book> listBooks = new ArrayList<>();
-		final String sql = "select * from book ";
+		final String sql = "SELECT * FROM book";
 		con = ConnectionUtil.getConnection();
 
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				Book index = new Book(rs.getInt("bookId"), rs.getString("title"), rs.getString("description"),
-						rs.getString("detail"), rs.getInt("enabled"));
-				listBooks.add(index);
+				Book objBook = new Book(rs.getInt("bookId"), rs.getString("title"), rs.getString("description"),
+						rs.getString("detail"), rs.getBoolean("status"));
+				listBooks.add(objBook);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(rs, st, con);
@@ -40,7 +39,7 @@ public class BookDAO {
 	}
 
 	public Book getBook(int bookId) {
-		final String sql = "SELECT * FROM book WHERE bookId= ? ";
+		final String sql = "SELECT * FROM book WHERE bookId = ?";
 		con = ConnectionUtil.getConnection();
 		Book objBook = null;
 		try {
@@ -49,7 +48,7 @@ public class BookDAO {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				objBook = new Book(rs.getInt("bookId"), rs.getString("title"), rs.getString("description"),
-						rs.getString("detail"), rs.getInt("enabled"));
+						rs.getString("detail"), rs.getBoolean("status"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -61,7 +60,7 @@ public class BookDAO {
 	}
 
 	public int delBook(int bookId) {
-		final String sql = "DELETE FROM book WHERE bookId = ? ";
+		final String sql = "DELETE FROM book WHERE bookId = ?";
 		con = ConnectionUtil.getConnection();
 		int result = 0;
 		try {
@@ -79,7 +78,7 @@ public class BookDAO {
 	}
 
 	public int editBook(Book objBook) {
-		final String sql = "UPDATE  book SET title= ?,description= ?,detail= ?,enabled= ? WHERE bookId=?";
+		final String sql = "UPDATE book SET title = ?, description = ?, detail = ?, status = ? WHERE bookId = ?";
 		con = ConnectionUtil.getConnection();
 		int result = 0;
 		try {
@@ -87,7 +86,7 @@ public class BookDAO {
 			pst.setString(1, objBook.getTitle());
 			pst.setString(2, objBook.getDescription());
 			pst.setString(3, objBook.getDetail());
-			pst.setInt(4, objBook.getEnabled());
+			pst.setBoolean(4, objBook.isStatus());
 			pst.setInt(5, objBook.getBookId());
 
 			result = pst.executeUpdate();

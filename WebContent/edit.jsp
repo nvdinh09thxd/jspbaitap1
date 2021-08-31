@@ -15,8 +15,12 @@
 			</h2>
 
 			<div >
-				<p style="color: red; font-weight: bold">${err}</p>
-				<form action="<%=request.getContextPath()%>/EditProduct" method="post">
+				<%
+					if (request.getParameter("err") != null) {
+						out.print("<p style='color: red; background: yellow; font-weight: bold; width: 220px'>Có lỗi trong quá trình xử lý!</p>");
+					}
+				%>
+				<form action="<%=request.getContextPath()%>/edit" method="post">
 					
 					<%
 						if(request.getAttribute("objBook")!=null){
@@ -44,8 +48,11 @@
 					</p>
 					
 					<p>
-						<label>enabled</label><br/>
-						<input type="text" name="enabled" value="<%=objBook.getEnabled() %>" />
+						<label>status</label><br/>
+						<select name="status">
+							  <option value="true" <%if(objBook.isStatus()) out.print("selected"); %>>Enabled</option>
+							  <option value="false" <%if(!objBook.isStatus()) out.print("selected"); %>>Disabled</option>
+						</select>
 					</p>					
 					<%} %>
 						<input  type="submit" value="Sửa sách" />

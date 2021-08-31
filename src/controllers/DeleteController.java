@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import daos.BookDAO;
 
-@WebServlet("/Delete")
+@WebServlet("/del")
 public class DeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class DeleteController extends HttpServlet {
 		BookDAO bookDAO = new BookDAO();
 
 		if (bookDAO.delBook(bookId) > 0) {
-			response.sendRedirect(request.getContextPath() + "/IndexController");
+			response.sendRedirect(request.getContextPath() + "/index");
 			return;
 		}
 	}
