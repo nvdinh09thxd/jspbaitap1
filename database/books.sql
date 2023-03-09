@@ -1,68 +1,71 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
+-- version 4.8.0.1
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 30, 2020 at 06:29 PM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th3 09, 2023 lúc 11:56 AM
+-- Phiên bản máy phục vụ: 10.1.32-MariaDB
+-- Phiên bản PHP: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `books`
+-- Cơ sở dữ liệu: `books`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book`
+-- Cấu trúc bảng cho bảng `book`
 --
 
-CREATE TABLE IF NOT EXISTS `book` (
-`bookId` int(6) NOT NULL,
+CREATE TABLE `book` (
+  `bookId` int(6) NOT NULL,
   `title` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `detail` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `enabled` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=6 ;
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `book`
+-- Đang đổ dữ liệu cho bảng `book`
 --
 
-INSERT INTO `book` (`bookId`, `title`, `description`, `detail`, `enabled`) VALUES
-(1, 'Sách dạy học lập trình', 'Lập trình viên thường gặp rất nhiều khó khăn', 'cuốn sách giúp bạn dể dàng vượt qua khó khăn', 0),
-(2, ' sách học lập trình C++', 'Cuốn sách giúp bạn hiểu được cách mà các thói quen hoạt động. Từ đó bạn có thể ổi bản thân một cách toàn tâm toàn ý mà không phải bị cưỡng ép.', 'Lập trình viên thường gặp khó khăn trong việc học những kỹ năng mới và thay đổi bản thân', 0),
+INSERT INTO `book` (`bookId`, `title`, `description`, `detail`, `status`) VALUES
+(1, 'Sách dạy học lập trình', 'Lập trình viên thường gặp rất nhiều khó khăn', 'cuốn sách giúp bạn dể dàng vượt qua khó khăn', 1),
 (3, 'sách demo', 'Sách demo những kiến thức căn bản trong dev ', 'Lập trình viên có thể demo thử', 0),
 (4, 'sách toán học', 'một cộng một bằng ba', 'học toán không khó', 1);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `book`
+-- Chỉ mục cho bảng `book`
 --
 ALTER TABLE `book`
- ADD PRIMARY KEY (`bookId`);
+  ADD PRIMARY KEY (`bookId`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `book`
+-- AUTO_INCREMENT cho bảng `book`
 --
 ALTER TABLE `book`
-MODIFY `bookId` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `bookId` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
